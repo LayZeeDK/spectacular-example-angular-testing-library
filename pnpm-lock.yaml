@@ -15,6 +15,7 @@ devDependencies:
   '@angular-devkit/build-angular': 0.1102.6_6f8c87de472902c3a784ad075568fb67
   '@angular/cli': 11.2.6
   '@angular/compiler-cli': 11.2.8_2e89a055c32b1c0132a4a2b9a8f75078
+  '@ngworker/spectacular': 0.2.0_2d492d807d57cfc5a3081cc82235725e
   '@testing-library/angular': 10.5.0_b4d3eb6a5e43015463d55fd1a2fc11fc
   '@types/jasmine': 3.6.9
   '@types/node': 12.20.7
@@ -1423,6 +1424,23 @@ packages:
       webpack: ^4.0.0
     resolution:
       integrity: sha512-bT7r+Sjp6C/2iizJKJ8pFMma+OlfY7KZvxlWDZBNQuXRnnCdrkD0P3vXkQCVpM2aLiFueSxwBNjh64cjcnQkHw==
+  /@ngworker/spectacular/0.2.0_2d492d807d57cfc5a3081cc82235725e:
+    dependencies:
+      '@angular/common': 11.2.8_@angular+core@11.2.8+rxjs@6.6.7
+      '@angular/core': 11.2.8_rxjs@6.6.7+zone.js@0.11.4
+      '@angular/platform-browser': 11.2.8_c882e4bab2833d412204c22223da76d9
+      '@angular/router': 11.2.8_2a0857f181191af973187c2811eefad4
+      rxjs: 6.6.7
+      tslib: 2.1.0
+    dev: true
+    peerDependencies:
+      '@angular/common': ^11.0.9
+      '@angular/core': ^11.0.9
+      '@angular/platform-browser': ^11.0.9
+      '@angular/router': ^11.0.9
+      rxjs: ^6.5.5
+    resolution:
+      integrity: sha512-2kyEB+XAfBr6EVRkVUrVmIi4YnOCdIDGB5vtzGdQ+o6Dm3l8VUtBeJdrfrCxCk46RAcSVraxbUdRIhjIm3s0qQ==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -9950,6 +9968,7 @@ specifiers:
   '@angular/platform-browser': ~11.2.7
   '@angular/platform-browser-dynamic': ~11.2.7
   '@angular/router': ~11.2.7
+  '@ngworker/spectacular': ^0.2.0
   '@testing-library/angular': 10.5.0
   '@types/jasmine': ~3.6.0
   '@types/node': ^12.11.1
