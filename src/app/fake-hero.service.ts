@@ -22,7 +22,9 @@ const heroes: Hero[] = [
 })
 export class FakeHeroService implements Partial<HeroService> {
   addHero(hero: Hero): Observable<Hero> {
-    const randomId = Math.ceil(10000 * Math.random());
+    const lastHero = heroes[heroes.length - 1];
+    const randomId =
+      lastHero.id + Math.ceil((1000 - heroes.length) * Math.random());
     hero = { ...hero, id: randomId };
 
     return scheduled(of(hero), asapScheduler);
