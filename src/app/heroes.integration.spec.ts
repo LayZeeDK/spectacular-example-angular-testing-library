@@ -1,20 +1,26 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { fakeAsync, tick } from '@angular/core/testing';
 import { SpectacularAppComponent, SpectacularFeatureTestingModule } from '@ngworker/spectacular';
 import { fireEvent, render, RenderResult, screen } from '@testing-library/angular';
 
-import { AppModule } from './app.module';
+import { FakeHeroService } from './fake-hero.service';
+import { HeroService } from './hero.service';
+import { HeroesModule } from './heroes.module';
 
 describe('Heroes integration test', () => {
   beforeEach(async () => {
     result = await render(SpectacularAppComponent, {
       excludeComponentDeclaration: true,
       imports: [
-        // HttpClientTestingModule,
+        HttpClientTestingModule,
         SpectacularFeatureTestingModule.withFeature({
-          featureModule: AppModule,
-          featurePath: '',
+          featureModule: HeroesModule,
+          featurePath: 'heroes',
         }),
       ],
+      providers: [{ provide: HeroService, useClass: FakeHeroService }],
     });
+    result.fixture.autoDetectChanges(true);
   });
 
   let result: RenderResult<SpectacularAppComponent, SpectacularAppComponent>;
@@ -25,20 +31,25 @@ describe('Heroes integration test', () => {
     });
 
     describe('Adding a hero', () => {
-      it('the hero is displayed when the Add button is clicked', () => {
+      it('the hero is displayed when the Add button is clicked', fakeAsync(() => {
         // Arrange
         const bram = 'Bram';
         const nameControl = screen.getByLabelText('Hero name:', {
           trim: true,
         });
-        fireEvent.change(nameControl, { target: { value: bram } });
+        fireEvent.input(nameControl, { target: { value: bram } });
 
         // Act
-        fireEvent.click(screen.getByText('Add hero'));
+        fireEvent.click(screen.getByRole('button', { name: 'Add hero' }));
+        tick();
 
         // Assert
-        expect(true).toBeTruthy();
-      });
+        expect(
+          screen.queryByText(new RegExp(bram), {
+            selector: '.heroes a',
+          })
+        ).not.toBeNull();
+      }));
     });
   });
 });
